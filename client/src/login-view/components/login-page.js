@@ -10,11 +10,12 @@ const useStyles = makeStyles((theme) => ({
     height: "300PX",
     width: "250px",
     backgroundColor: myTheme.palette.myColor.ashColor,
-
+    float: "left",
     margin: "auto",
-    paddingTop: "30px",
-    marginTop: "30px",
+    paddingTop: "50px",
+    marginTop: "100px",
     paddingLeft: "50px",
+    marginLeft: "30%",
   },
   input: {
     paddingBottom: "10px",
@@ -36,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LoginPage = ({ handleSignupClick }) => {
+const LoginPage = () => {
   const classes = useStyles();
   const [username, setUserName] = React.useState("");
   const [password, setPassword] = React.useState("");
