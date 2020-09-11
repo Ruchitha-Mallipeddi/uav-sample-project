@@ -1,6 +1,4 @@
 import { createMuiTheme } from "@material-ui/core/styles";
-import purple from "@material-ui/core/colors/purple";
-import green from "@material-ui/core/colors/green";
 
 export const myTheme = createMuiTheme({
   palette: {
@@ -15,6 +13,7 @@ export const myTheme = createMuiTheme({
       blackColor: "#000",
       greenColor: "#3bb7ab",
       ashColor: "#eeeff0",
+      lightBlack: "#101010e6",
     },
   },
   typography: {
@@ -34,11 +33,12 @@ export const myTheme = createMuiTheme({
       fontFamily: "poppins",
     },
     h6: {
-      fontSize: "19px",
+      fontSize: "20px",
       textAlign: "left",
       color: "#000",
       fontStyle: "bold",
       fontFamily: "poppins",
+      thickness: "5px",
     },
     button: {
       fontSize: "13px",

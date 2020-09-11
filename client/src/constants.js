@@ -4,3 +4,6 @@ export const NETWORK_ERROR = "Network error";
 export const USERNAME_LABEL = "Username";
 export const PASSWORD_LABEL = "Password";
 export const SUBMIT = "Submit";
+export const MAP = "MAP";
+export const LOCATIONS="Locations"
+export const ADDLOCATION="Add Location"
