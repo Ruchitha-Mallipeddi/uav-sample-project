@@ -1,39 +1,39 @@
 import React from "react";
 import { makeStyles, Typography, Button, Input } from "@material-ui/core";
-import { myTheme } from "../../theme";
+import { myTheme } from "../../utils/theme";
 import * as Constants from "../../constants";
 import { useHistory } from "react-router-dom";
 import Navbar from "../../reusable-components/navbar";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   forms: {
     height: "300PX",
     width: "250px",
     backgroundColor: myTheme.palette.myColor.ashColor,
     float: "left",
-    margin: "auto",
-    paddingTop: "50px",
-    marginTop: "100px",
-    paddingLeft: "50px",
-    marginLeft: "30%",
+    margin: myTheme.spacing("auto"),
+    paddingTop: myTheme.spacing(50/8),
+    marginTop: myTheme.spacing(100/8),
+    paddingLeft: myTheme.spacing(50/8),
+    marginLeft: '40%',
   },
   input: {
-    paddingBottom: "10px",
+    paddingBottom: myTheme.spacing(10/8),
     color: myTheme.palette.myColor.blackColor,
   },
   heading: {
-    paddingTop: "50px",
+    paddingTop: myTheme.spacing(50/8),
   },
   error: {
-    paddingLeft: "40px",
+    paddingLeft: myTheme.spacing(40/8),
     color: myTheme.palette.myColor.redColor,
   },
   button: {
     marginLeft: "25%",
-    marginTop: "10px",
+    marginTop: myTheme.spacing(10/8),
   },
   styleInputFields: {
-    marginRight: "20px",
+    marginRight: myTheme.spacing(20/8),
   },
 }));
 
@@ -77,15 +77,13 @@ const LoginPage = () => {
       .then((response) => {
         if (response.ok) {
           response.json().then((result) => {
-            console.log("result:", result);
-
             localStorage.setItem(
               "login-accesstoken",
               JSON.stringify({
                 token: result,
               })
             );
-            history.push("/home");
+            history.push("/locations/new");
           });
         } else {
           setAuthenticationError(Constants.INVALID_CREDENTIALS);

@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { makeStyles, Typography } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import Navbar from "../../reusable-components/navbar";
 import { Card } from "@material-ui/core";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
-
+import { myTheme } from "../../utils/theme";
 import * as locationsListAction from "../../locations-state/actions/locationsListAction";
 import { useDispatch, useSelector } from "react-redux";
 
 import Map from "../../reusable-components/map";
 import { useLocation, useHistory } from "react-router-dom";
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   card: {
-    marginTop: theme.spacing(20/8),
+    marginTop: myTheme.spacing(20/8),
     display: "flex",
-    paddingBottom: theme.spacing(25/8),
+    paddingBottom: myTheme.spacing(25/8),
   },
   name: {
     paddingLeft: "6%",
@@ -26,14 +26,14 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: "10%",
     width: "60%",
     float: "left",
-    paddingTop: theme.spacing(50/8),
+    paddingTop: myTheme.spacing(50/8),
   },
   icons: {
     paddingLeft: "95%",
-    paddingTop: theme.spacing(30/8),
-    height: theme.spacing(20/8),
+    paddingTop: myTheme.spacing(30/8),
+    height: myTheme.spacing(20/8),
     "&:hover": {
-      color: "#000",
+      color: myTheme.palette.myColor.blackColor,
     },
   },
 }));

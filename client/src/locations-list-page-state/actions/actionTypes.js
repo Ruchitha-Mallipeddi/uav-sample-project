@@ -1,2 +1,0 @@
-export const GET_ALL_LOCATIONS = "GET_ALL_LOCATIONS";
-export const ADD_NEW_LOCATION = "ADD_NEW_LOCATION";

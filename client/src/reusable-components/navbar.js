@@ -1,22 +1,18 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import { Typography } from "@material-ui/core";
 import * as Constants from "../constants";
-import { Link } from "react-router-dom";
-import { myTheme } from "../theme";
-
+import { Link, Redirect } from "react-router-dom";
+import Drawer from "@material-ui/core/Drawer";
+import { myTheme } from "../utils/theme";
+import ListItem from "@material-ui/core/ListItem";
+import { logout } from "../utils/index";
 const useStyles = makeStyles((theme) => ({
-  styleNavbar: {
+  drawerPaper: {
     float: "left",
-    outline: "none",
-    display: "flex",
+    width: "8%",
 
-    width: "10%",
-    height: "100vh",
-
-    flexDirection: "column",
-    alignItems: "initial",
     backgroundColor: myTheme.palette.myColor.lightBlack,
   },
   link: {
@@ -26,13 +22,13 @@ const useStyles = makeStyles((theme) => ({
   styleNavbarElement: {
     height: "20px",
 
-    width: "90%",
+    width: "100%",
     color: myTheme.palette.secondary.main,
-    marginTop: "10px",
-    paddingTop: "7px",
-    paddingBottom: "15px",
+    marginTop: "10%",
+    paddingTop: "10%",
+    paddingBottom: myTheme.spacing(15 / 8),
 
-    paddingLeft: "10px",
+    paddingLeft: "10%",
     "&:hover": {
       backgroundColor: myTheme.palette.myColor.blackColor,
     },
@@ -42,59 +38,83 @@ const useStyles = makeStyles((theme) => ({
 const Navbar = () => {
   const classes = useStyles();
   const location = useLocation();
+  const history = useHistory();
+  const logoutUser = () => {
+    logout();
+    return <Redirect to="/" />;
+  };
+
+  const handleLocations = () => {
+    history.push("/locations");
+  };
+
   return (
-    <div className={classes.styleNavbar} id="navbar">
+    <Drawer
+      className={classes.styleNavbar}
+      id="navbar"
+      variant="permanent"
+      classes={{
+        paper: classes.drawerPaper,
+      }}
+    >
       {(location.pathname === "/" || location.pathname === "/login") && (
-        <Link to="/map" className={classes.link}>
-          <Typography
-            variant="h5"
-            className={classes.styleNavbarElement}
-            id="navbarElement"
-          >
-            {Constants.MAP}
-          </Typography>
-        </Link>
+        <ListItem className={classes.styleNavbarElement}>
+          <Link to="/map" className={classes.link}>
+            <Typography variant="h5" id="navbarElement">
+              {Constants.MAP}
+            </Typography>
+          </Link>
+        </ListItem>
       )}
 
       {(location.pathname === "/" || location.pathname === "/map") && (
-        <Link to="/login" className={classes.link}>
-          <Typography
-            variant="h5"
-            className={classes.styleNavbarElement}
-            id="navbarElement"
-          >
-            {Constants.LOGIN}
-          </Typography>
-        </Link>
+        <ListItem className={classes.styleNavbarElement}>
+          <Link to="/login" className={classes.link}>
+            <Typography variant="h5" id="navbarElement">
+              {Constants.LOGIN}
+            </Typography>
+          </Link>
+        </ListItem>
       )}
 
-      {(location.pathname === "/locations" ||
-        location.pathname === "/home" ||
+      {(location.pathname.match(/\/locations\/:(\d+)/) ||
+        location.pathname === "/locations" ||
         location.pathname === "/locations/new") && (
-        <Link to="/locations" className={classes.link}>
-          <Typography
-            variant="h6"
-            className={classes.styleNavbarElement}
-            id="navbarElement"
-          >
-            {Constants.LOCATIONS}
-          </Typography>
-        </Link>
-      )}
-      {(location.pathname === "/locations" ||
-        location.pathname === "/home" ||
+          <ListItem className={classes.styleNavbarElement}>
+            <Link
+              to="/locations"
+              className={classes.link}
+              onClick={handleLocations}
+            >
+              <Typography variant="h5" id="navbarElement">
+                {Constants.LOCATIONS}
+              </Typography>
+            </Link>
+          </ListItem>
+        )}
+      {(location.pathname.match(/\/locations\/:(\d+)/) ||
+        location.pathname === "/locations" ||
         location.pathname === "/locations/new") && (
-        <Link to="/locations/new" className={classes.link}>
-          <Typography
-            variant="h6"
-            className={classes.styleNavbarElement}
-            id="navbarElement"
-          >
-            {Constants.ADDLOCATION}
-          </Typography>
-        </Link>
+          <ListItem className={classes.styleNavbarElement}>
+            <Link to="/locations/new" className={classes.link}>
+              <Typography variant="h5" id="navbarElement">
+                {Constants.MAP}
+              </Typography>
+            </Link>
+          </ListItem>
+        )}
+      {(location.pathname.match(/\/locations\/:(\d+)/) ||
+        location.pathname === "/locations" ||
+        location.pathname === "/locations/new") && (
+        <ListItem className={classes.styleNavbarElement}>
+          <Link className={classes.link} onClick={logoutUser}>
+            <Typography variant="h5" id="navbarElement">
+              {Constants.LOGOUT}
+            </Typography>
+          </Link>
+        </ListItem>
       )}
-    </div>
+    </Drawer>
   );
 };
 

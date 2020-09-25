@@ -3,7 +3,7 @@ import { createMuiTheme } from "@material-ui/core/styles";
 export const myTheme = createMuiTheme({
   palette: {
     primary: {
-      main: "#3a456b", // We can directly give colors in # without importing.
+      main: "#3a456b",
     },
     secondary: {
       main: "#ffffff",
@@ -16,6 +16,7 @@ export const myTheme = createMuiTheme({
       lightBlack: "#101010e6",
     },
   },
+  spacing: 8,
   typography: {
     h2: {
       fontSize: "40px",

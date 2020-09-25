@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
-
+import { myTheme } from "../utils/theme";
 import { makeStyles } from "@material-ui/core";
 import "./map.css";
 import PublicIcon from "@material-ui/icons/Public";
@@ -27,16 +27,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MapboxGLMap = ({showLatLng,showMarker}) => {
+const MapboxGLMap = ({ showLatLng, showMarker }) => {
   const [map, setMap] = useState(null);
   const mapContainer = useRef(null);
   const classes = useStyles();
   const location = useLocation();
   const [flag, setFlag] = useState(true);
-  const theToken = JSON.stringify(
-    JSON.parse(localStorage.getItem("login-accesstoken")).token.access_token
-  );
-  //console.log({showMarker});
+  
   const handleClick = () => {
     if (flag === false) {
       setFlag(true);
@@ -64,11 +61,9 @@ const MapboxGLMap = ({showLatLng,showMarker}) => {
   useEffect(() => {
     mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_KEY;
     if (!showMarker || locations) {
-     
-        locations.locations.map(
-          (location, key) => ((lat = location.lat), (lng = location.lng))
-        );
-      
+      locations.locations.map(
+        (location, key) => ((lat = location.lat), (lng = location.lng))
+      );
 
       const initializeMap = ({ setMap, mapContainer }) => {
         const map = new mapboxgl.Map({
@@ -102,8 +97,11 @@ const MapboxGLMap = ({showLatLng,showMarker}) => {
           }),
           "bottom-right"
         );
-        if (showLatLng)       
-         {
+        if (showLatLng) {
+          const theToken = JSON.stringify(
+            JSON.parse(localStorage.getItem("login-accesstoken")).token.access_token
+          );
+        
           map.on("mousemove", function (e) {
             document.getElementById("info").innerHTML = JSON.stringify(
               e.lngLat.wrap()
@@ -134,10 +132,10 @@ const MapboxGLMap = ({showLatLng,showMarker}) => {
             }
           });
         }
-        
+
         if (showMarker) {
           var marker = new mapboxgl.Marker({
-            color: "red",
+            color: myTheme.palette.myColor.redColor,
           })
 
             .setLngLat([lng, lat])
@@ -152,9 +150,7 @@ const MapboxGLMap = ({showLatLng,showMarker}) => {
 
   return (
     <div className={classes.mapPage}>
-      {({showLatLng}) && (
-        <div className="sidebarStyle" id="info"></div>
-      )}
+      {(showLatLng ) && <div className="sidebarStyle" id="info"></div>}
       <div ref={(el) => (mapContainer.current = el)} style={styles} />
       <div className={classes.icon}>
         <PublicIcon onClick={handleClick}></PublicIcon>
