@@ -13,9 +13,9 @@ import Map from "../../reusable-components/map";
 import { useLocation, useHistory } from "react-router-dom";
 const useStyles = makeStyles(() => ({
   card: {
-    marginTop: myTheme.spacing(20/8),
+    marginTop: myTheme.spacing(20 / 8),
     display: "flex",
-    paddingBottom: myTheme.spacing(25/8),
+    paddingBottom: myTheme.spacing(25 / 8),
   },
   name: {
     paddingLeft: "6%",
@@ -26,19 +26,19 @@ const useStyles = makeStyles(() => ({
     paddingLeft: "10%",
     width: "60%",
     float: "left",
-    paddingTop: myTheme.spacing(50/8),
+    paddingTop: myTheme.spacing(50 / 8),
   },
   icons: {
     paddingLeft: "95%",
-    paddingTop: myTheme.spacing(30/8),
-    height: myTheme.spacing(20/8),
+    paddingTop: myTheme.spacing(30 / 8),
+    height: myTheme.spacing(20 / 8),
     "&:hover": {
       color: myTheme.palette.myColor.blackColor,
     },
   },
 }));
 
-const ListLocations = () => {
+const Locations = () => {
   const classes = useStyles();
   const history = useHistory();
   const [flag, setFlag] = React.useState(true);
@@ -135,10 +135,10 @@ const ListLocations = () => {
   }
 
   return (
-    <div>
+    <>
       <Navbar></Navbar>
       {location.pathname === "/locations" && (
-        <div>
+        <div data-testid="locations">
           <div className={classes.locations}>{allLocations}</div>
           <div className={classes.icons}>
             <ArrowDownwardIcon onClick={handleAsc}></ArrowDownwardIcon>
@@ -147,21 +147,14 @@ const ListLocations = () => {
           </div>
         </div>
       )}
-      {(location.pathname === "/locations/new" 
-        ) && (
-        <div>
-          <Map showLatLng={true} showMarker={false}></Map>
-        </div>
+      {location.pathname === "/locations/new" && (
+        <Map showLatLng={true} showMarker={false}></Map>
       )}
-{(location.pathname.match(/\/locations\/:(\d+)/)
-       ) && (
-        <div>
-          <Map showLatLng={true} showMarker={true}></Map>
-        </div>
+      {location.pathname.match(/\/locations\/:(\d+)/) && (
+        <Map showLatLng={true} showMarker={true}></Map>
       )}
-
-    </div>
+    </>
   );
 };
 
-export default ListLocations;
+export default Locations;

@@ -110,21 +110,21 @@ const LoginPage = () => {
             {Constants.LOGIN}
           </Typography>
 
-          <div id="input">
+          <div data-testid="username">
             <Typography variant="h6">{Constants.USERNAME_LABEL}</Typography>
-            <Input onChange={handleChangeInUsername} />
+            <Input onChange={handleChangeInUsername} inputProps={{ "data-testid": "username-value" }} />
           </div>
 
-          <div id="input">
+          <div data-testid="password">
             <Typography variant="h6">{Constants.PASSWORD_LABEL}</Typography>
-            <Input onChange={handleChangeInPassword} />
+            <Input onChange={handleChangeInPassword} inputProps={{ "data-testid": "password-value" }} />
           </div>
         </div>
 
-        <Typography className={classes.error} id="error">
+        <Typography className={classes.error} id="error" data-testid="error">
           {authenticationError !== "" && authenticationError}
         </Typography>
-        <div className={classes.button}>
+        <div className={classes.button} data-testid="button">
           <Button
             onClick={handleClick}
             variant="contained"

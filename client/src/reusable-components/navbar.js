@@ -6,8 +6,9 @@ import * as Constants from "../constants";
 import { Link, Redirect } from "react-router-dom";
 import Drawer from "@material-ui/core/Drawer";
 import { myTheme } from "../utils/theme";
-import ListItem from "@material-ui/core/ListItem";
+import { ListItem } from "@material-ui/core";
 import { logout } from "../utils/index";
+
 const useStyles = makeStyles((theme) => ({
   drawerPaper: {
     float: "left",
@@ -56,6 +57,7 @@ const Navbar = () => {
       classes={{
         paper: classes.drawerPaper,
       }}
+      data-testid="navbar"
     >
       {(location.pathname === "/" || location.pathname === "/login") && (
         <ListItem className={classes.styleNavbarElement}>
@@ -80,29 +82,29 @@ const Navbar = () => {
       {(location.pathname.match(/\/locations\/:(\d+)/) ||
         location.pathname === "/locations" ||
         location.pathname === "/locations/new") && (
-          <ListItem className={classes.styleNavbarElement}>
-            <Link
-              to="/locations"
-              className={classes.link}
-              onClick={handleLocations}
-            >
-              <Typography variant="h5" id="navbarElement">
-                {Constants.LOCATIONS}
-              </Typography>
-            </Link>
-          </ListItem>
-        )}
+        <ListItem className={classes.styleNavbarElement}>
+          <Link
+            to="/locations"
+            className={classes.link}
+            onClick={handleLocations}
+          >
+            <Typography variant="h5" id="navbarElement">
+              {Constants.LOCATIONS}
+            </Typography>
+          </Link>
+        </ListItem>
+      )}
       {(location.pathname.match(/\/locations\/:(\d+)/) ||
         location.pathname === "/locations" ||
         location.pathname === "/locations/new") && (
-          <ListItem className={classes.styleNavbarElement}>
-            <Link to="/locations/new" className={classes.link}>
-              <Typography variant="h5" id="navbarElement">
-                {Constants.MAP}
-              </Typography>
-            </Link>
-          </ListItem>
-        )}
+        <ListItem className={classes.styleNavbarElement}>
+          <Link to="/locations/new" className={classes.link}>
+            <Typography variant="h5" id="navbarElement">
+              {Constants.MAP}
+            </Typography>
+          </Link>
+        </ListItem>
+      )}
       {(location.pathname.match(/\/locations\/:(\d+)/) ||
         location.pathname === "/locations" ||
         location.pathname === "/locations/new") && (

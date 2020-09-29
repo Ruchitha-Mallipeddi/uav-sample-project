@@ -149,7 +149,7 @@ const MapboxGLMap = ({ showLatLng, showMarker }) => {
   }, [map, locations]);
 
   return (
-    <div className={classes.mapPage}>
+    <div className={classes.mapPage} data-testid="map">
       {(showLatLng ) && <div className="sidebarStyle" id="info"></div>}
       <div ref={(el) => (mapContainer.current = el)} style={styles} />
       <div className={classes.icon}>
