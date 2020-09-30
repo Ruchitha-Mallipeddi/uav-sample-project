@@ -1,0 +1,10 @@
+export const LOGIN = "LOGIN";
+export const INVALID_CREDENTIALS = "Invalid Credentials";
+export const NETWORK_ERROR = "Network error";
+export const USERNAME_LABEL = "Username";
+export const PASSWORD_LABEL = "Password";
+export const SUBMIT = "Submit";
+export const MAP = "MAP";
+export const LOCATIONS="LOCATIONS"
+export const ADDLOCATION="Add Location"
+export const LOGOUT= "LOGOUT";
