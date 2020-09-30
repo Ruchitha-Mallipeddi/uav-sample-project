@@ -150,13 +150,13 @@ const MapboxGLMap = ({ showLatLng, showMarker }) => {
 
   return (
     <div className={classes.mapPage} data-testid="map">
-      {(showLatLng ) && <div className="sidebarStyle" id="info"></div>}
-      <div ref={(el) => (mapContainer.current = el)} style={styles} />
-      <div className={classes.icon}>
+      {(showLatLng ) && <div className="sidebarStyle" id="info" data-testid="latlng"></div>}
+      <div ref={(el) => (mapContainer.current = el)} style={styles} data-testid="general-map"/>
+      <div className={classes.icon} data-testid="satellite">
         <PublicIcon onClick={handleClick}></PublicIcon>
       </div>
     </div>
   );
-};
+};``
 
 export default MapboxGLMap;

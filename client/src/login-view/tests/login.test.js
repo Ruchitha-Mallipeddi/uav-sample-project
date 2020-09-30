@@ -78,4 +78,63 @@ describe("Login page component", () => {
     expect(getByTestId("error")).toBeInTheDocument();
     expect(getByText("Network error")).toBeInTheDocument();
   });
+
+
+  test("successful login for correct inputs", async () => {
+    
+    global.fetch = jest.fn().mockImplementation(() => {
+      var p = new Promise((resolve, reject) => {
+        resolve({
+          ok: true,
+          json: function() { 
+            return {access_token :fake-accesstoken}
+          }
+        });
+      });
+
+      return p;
+    });
+    const { getByTestId, getByRole, getByText } = render(
+      <Router>
+        <LoginPage />
+      </Router>
+    );
+
+    fireEvent.change(getByTestId("username-value"), {
+      target: { value: "testuser" },
+    });
+    fireEvent.change(getByTestId("password-value"), {
+      target: { value: "zemoso@123" },
+    });
+    await act(() => fireEvent.click(getByRole("button")));
+    
+   
+    
+  });
+
+  
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 });

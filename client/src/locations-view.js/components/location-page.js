@@ -88,7 +88,7 @@ const Locations = () => {
         })
         .catch((err) => {});
     }
-  }, [dispatch]);
+  }, []);
 
   locationList = useSelector((state) => {
     return {
@@ -101,7 +101,7 @@ const Locations = () => {
   if (flag === true && location.pathname == "/locations") {
     allLocations = null;
     allLocations = locationList.locations.map((location, key) => (
-      <div onClick={() => handleMarker(location.id)}>
+      <div onClick={() => handleMarker(location.id)} data-testid="card">
         <Card className={classes.card}>
           <Typography className={classes.name} variant="h6">
             {location.id}.
@@ -120,7 +120,7 @@ const Locations = () => {
       .slice()
       .reverse()
       .map((location, key) => (
-        <div onClick={() => handleMarker(location.id)}>
+        <div onClick={() => handleMarker(location.id)} data-testid="card">
           <Card className={classes.card}>
             <Typography className={classes.name} variant="h6">
               {location.id}.
@@ -141,9 +141,9 @@ const Locations = () => {
         <div data-testid="locations">
           <div className={classes.locations}>{allLocations}</div>
           <div className={classes.icons}>
-            <ArrowDownwardIcon onClick={handleAsc}></ArrowDownwardIcon>
-            <ArrowUpwardIcon onClick={handleDsc}></ArrowUpwardIcon>
-            <AddIcon onClick={handleAdd}></AddIcon>
+            <ArrowDownwardIcon onClick={handleAsc} data-testid="sortAsc"></ArrowDownwardIcon>
+            <ArrowUpwardIcon onClick={handleDsc} data-testid="sortDsc"></ArrowUpwardIcon >
+            <AddIcon onClick={handleAdd} data-testid="add"></AddIcon>
           </div>
         </div>
       )}

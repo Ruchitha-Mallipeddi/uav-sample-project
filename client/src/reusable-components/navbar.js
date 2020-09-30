@@ -45,10 +45,6 @@ const Navbar = () => {
     return <Redirect to="/" />;
   };
 
-  const handleLocations = () => {
-    history.push("/locations");
-  };
-
   return (
     <Drawer
       className={classes.styleNavbar}
@@ -83,11 +79,7 @@ const Navbar = () => {
         location.pathname === "/locations" ||
         location.pathname === "/locations/new") && (
         <ListItem className={classes.styleNavbarElement}>
-          <Link
-            to="/locations"
-            className={classes.link}
-            onClick={handleLocations}
-          >
+          <Link to="/locations" className={classes.link}>
             <Typography variant="h5" id="navbarElement">
               {Constants.LOCATIONS}
             </Typography>
@@ -109,7 +101,11 @@ const Navbar = () => {
         location.pathname === "/locations" ||
         location.pathname === "/locations/new") && (
         <ListItem className={classes.styleNavbarElement}>
-          <Link className={classes.link} onClick={logoutUser}>
+          <Link
+            className={classes.link}
+            onClick={logoutUser}
+            data-testid="logoutLink"
+          >
             <Typography variant="h5" id="navbarElement">
               {Constants.LOGOUT}
             </Typography>

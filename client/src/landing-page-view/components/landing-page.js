@@ -4,7 +4,7 @@ import Navbar from "../../reusable-components/navbar";
 
 const LandingPage = () => {
   return (
-    <div>
+    <div data-testid="landingPage">
       <Navbar></Navbar>
     </div>
   );
